@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Subscribe form</title>
+</head>
+<body>
+  
+  <h2>Subscribe form</h2>
+  <form name="subscribeForm" method="POST" action="/subscribe">
+    <label><b>Name</b></label><br />
+    <input id="username" type="text" placeholder="Enter name" name="username"><br />
+    <label id="usernameError" style="color: #FF0000"></label><br />
+    <label><b>Email</b></label><br />
+    <input id="email" type="text" placeholder="Enter email" name="email"><br />
+    <label id="emailError" style="color: #FF0000"></label><br />
+    <button id="submit" disabled="true">Subscribe</button>
+  </form>
+  
+  <script src="./vendors/underscore/underscore.js"></script>
+  <script>
+    let module = {
+      set exports (val) {
+        Object.assign(window, val)
+      } 
+    }
+  </script>
+  <script src="./common/validation.js"></script>
+  <script src="./client/index.js"></script>
+</body>
+</html>
