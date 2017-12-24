@@ -10,13 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/devico/subscribe-form-expressjs.git"
   },
-  "author": "",
+  "author": "Serhii Dmytrakov",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/devico/subscribe-form-expressjs/issues"
   },
   "homepage": "https://github.com/devico/subscribe-form-expressjs#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2"
   }
 }
