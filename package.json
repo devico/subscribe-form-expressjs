@@ -4,9 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node ./server.js",
-    "dev": "npm start",
-    "nodemon": "./node_modules/nodemon/bin/nodemon.js --config nodemon.json server.js --exec babel-node --presets es2015,stage-2"
+    "start": "nodemon ./server.js --exec babel-node",
+    "server": "babel-node ./server.js"
   },
   "repository": {
     "type": "git",

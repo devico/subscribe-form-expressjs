@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <title>Subscribe form</title>
+  <link rel="shortcut icon" href="./images/favicon.ico">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  
+  <div id="users"></div>
+
   <h2>Subscribe form</h2>
   <form name="subscribeForm" method="POST" action="/subscribe">
     <label><b>Name</b></label><br />
     <input id="username" type="text" placeholder="Enter name" name="username"><br />
-    <label id="usernameError" style="color: #FF0000"></label><br />
+    <label id="usernameError"></label><br />
     <label><b>Email</b></label><br />
     <input id="email" type="text" placeholder="Enter email" name="email"><br />
-    <label id="emailError" style="color: #FF0000"></label><br />
+    <label id="emailError"></label><br />
     <button id="submit" disabled="true">Subscribe</button>
   </form>
   

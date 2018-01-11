@@ -1,0 +1,59 @@
+{
+  "users": [
+    {
+      "username": "devico",
+      "email": "clamdm@gmail.com",
+      "status": "subscribed"
+    },
+    {
+      "username": "andrey",
+      "email": "azajin@gmail.com",
+      "status": "subscribed"
+    },
+    {
+      "username": "igor",
+      "email": "goncharov@gmail.com",
+      "status": "subscribed"
+    },
+    {
+      "username": "nick",
+      "email": "nick@mail.ru",
+      "status": "subscribed"
+    },
+    {
+      "username": "alex",
+      "email": "alex@mail.ru",
+      "status": "subscribed"
+    },
+    {
+      "username": "slava",
+      "email": "slava@mail.ru",
+      "status": "subscribed"
+    },
+    {
+      "username": "vasja",
+      "email": "vasja@mail.ru",
+      "status": "subscribed"
+    },
+    {
+      "username": "dd",
+      "email": "dd@dd.dd",
+      "status": "subscribed"
+    },
+    {
+      "username": "aa",
+      "email": "aa@aa.aa",
+      "status": "subscribed"
+    },
+    {
+      "username": "aa",
+      "email": "ss@aa.ww",
+      "status": "subscribed"
+    },
+    {
+      "username": "petr",
+      "email": "petrov@ukr.net",
+      "status": "subscribed"
+    }
+  ]
+}
