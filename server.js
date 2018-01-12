@@ -4,9 +4,23 @@ const fs = require('fs')
 const path = require('path')
 const qs = require('querystring')
 const validate = require('./public/common/validation')
-const db = require('./db.json')
+const waitInterval = 100000
 
 const app = express()
+
+setInterval((db) => {
+  saveToDB(db)
+}, waitInterval)
+
+let db
+
+fs.readFile('db.json', 'utf-8', (err, data) => {
+  if (err) {
+    throw err
+  } else {
+    db = JSON.parse(data)
+  }
+})
 
 app.use('/', express.static(path.join(__dirname, './public')))
 
@@ -17,12 +31,12 @@ app.get('/', (req, res) => {
 })
 
 app.get('/users', (req, res, next) => {
-  let users = "<h3>Подписчики</h3><ol>"
-  for (let user of db['users']) {
-    users = users + "<li>" + user.username + " - " + user.email + "</li>"
+  let html = "<h3>Подписчики</h3><ol>"
+  for (let user of db.users) {
+    html = html + "<li>" + user.username + " - " + user.email + "</li>"
   }
-  users += "</ol>"
-  res.send(users)
+  html += "</ol>"
+  res.send(html)
 })
 
 app.post('/subscribe', (req, res) => {
@@ -31,26 +45,30 @@ app.post('/subscribe', (req, res) => {
   let valid = validate({username, email})
   res.writeHead(200, {'Content-Type': 'application/json'})
   if (valid) {
-    console.log('start')
-    fs.readFile('db.json', 'utf-8', (err, data) => {
-      if (err) {
-        throw err
-      } else {
-        let obj = JSON.parse(data)
-        let users = obj.users
-        obj.users.push({username: req.body.username, email: req.body.email, status: 'subscribed'})
-        let json = JSON.stringify(obj, null, 2)
-        fs.writeFile('db.json', json, (err) => {
-          if (err) throw err
-          console.log('complete')
-        })
-      }
-    })
+    db.users.push({username: req.body.username, email: req.body.email, status: 'subscribed'})
     res.end(JSON.stringify({ 'status': 'subscribed' }))
   } else {
     res.end(JSON.stringify({ 'status': 'did not subscribe' }))
   }
 })
+
+function exitHandler(options, err) {
+  if (err) console.log(err.stack)
+  if (options.exit) {
+    saveToDB(db)
+    process.exit()
+  }
+}
+
+process.on('exit', exitHandler.bind(null, {exit: true}))
+process.on('SIGINT', exitHandler.bind(null, {exit: true}))
+
+function saveToDB(data) {
+  let json = JSON.stringify(data, null, 2)
+  fs.writeFile('db.json', json, (err) => {
+    if (err) throw err
+  })
+}
 
 app.listen(8000, () => {
   console.log('server start on port 8000')
