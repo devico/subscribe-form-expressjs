@@ -8,10 +8,6 @@ const waitInterval = 100000
 
 const app = express()
 
-setInterval((db) => {
-  saveToDB(db)
-}, waitInterval)
-
 let db
 
 fs.readFile('db.json', 'utf-8', (err, data) => {
@@ -53,22 +49,28 @@ app.post('/subscribe', (req, res) => {
 })
 
 function exitHandler(options, err) {
-  if (err) console.log(err.stack)
+  if (err) console.error(err)
   if (options.exit) {
     saveToDB(db)
-    process.exit()
   }
 }
 
-process.on('exit', exitHandler.bind(null, {exit: true}))
+// process.on('exit', exitHandler.bind(null, {exit: true}))
 process.on('SIGINT', exitHandler.bind(null, {exit: true}))
 
-function saveToDB(data) {
-  let json = JSON.stringify(data, null, 2)
+function saveToDB(db) {
+  console.log(db)
+  let json = JSON.stringify(db, null, 2)
+  console.log(json)
   fs.writeFile('db.json', json, (err) => {
     if (err) throw err
+    console.log('complete')
   })
 }
+
+setInterval(() => {
+  saveToDB(db)
+}, waitInterval)
 
 app.listen(8000, () => {
   console.log('server start on port 8000')

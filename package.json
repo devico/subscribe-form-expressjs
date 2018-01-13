@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon ./server.js --exec babel-node",
-    "server": "babel-node ./server.js"
+    "server": "babel-node ./server.js",
+    "initDB": "echo '{\"users\": []}' > db.json"
   },
   "repository": {
     "type": "git",
