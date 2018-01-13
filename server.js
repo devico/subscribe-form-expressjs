@@ -3,7 +3,7 @@ const express = require('express')
 const fs = require('fs')
 const path = require('path')
 const qs = require('querystring')
-const validate = require('./public/common/validation')
+const validateSubscriptionForm = require('./public/common/validation')
 const waitInterval = 100000
 
 const app = express()
@@ -38,9 +38,10 @@ app.get('/users', (req, res, next) => {
 app.post('/subscribe', (req, res) => {
   let username = req.body.username
   let email = req.body.email
-  let valid = validate({username, email})
+  let result = validateSubscriptionForm({username, email})
+  console.log(typeof result)
   res.writeHead(200, {'Content-Type': 'application/json'})
-  if (valid) {
+  if (result) {
     db.users.push({username: req.body.username, email: req.body.email, status: 'subscribed'})
     res.end(JSON.stringify({ 'status': 'subscribed' }))
   } else {
@@ -59,9 +60,7 @@ function exitHandler(options, err) {
 process.on('SIGINT', exitHandler.bind(null, {exit: true}))
 
 function saveToDB(db) {
-  console.log(db)
   let json = JSON.stringify(db, null, 2)
-  console.log(json)
   fs.writeFile('db.json', json, (err) => {
     if (err) throw err
     console.log('complete')

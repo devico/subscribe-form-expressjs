@@ -9,7 +9,7 @@ let form = {
 let handleKeyup = () => {
   let username = form.username.value,
       email = form.email.value
-  let valid = window.validate({username, email})
+  let valid = window.validateSubscriptionForm({username, email})
   
   if (_.filter(valid, Boolean).length != Object.keys(valid).length) {
     form.usernameError.innerHTML = valid.username ? "" : "* Name must have only letters"

@@ -1,4 +1,4 @@
-function validate (data) {
+function validateSubscriptionForm (data) {
   return ({
     username: validateUsername(data.username),
     email: validateEmail(data.email)
@@ -13,4 +13,4 @@ let validateUsername = (username) => {
   return (username.length > 0 && username.match(/^[A-Za-z]+$/) != null ) ? true : false
 }
 
-module.exports = validate
+module.exports = validateSubscriptionForm
