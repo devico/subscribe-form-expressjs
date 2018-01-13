@@ -39,7 +39,6 @@ app.post('/subscribe', (req, res) => {
   let username = req.body.username
   let email = req.body.email
   let result = validateSubscriptionForm({username, email})
-  console.log(typeof result)
   res.writeHead(200, {'Content-Type': 'application/json'})
   if (result) {
     db.users.push({username: req.body.username, email: req.body.email, status: 'subscribed'})
@@ -56,7 +55,7 @@ function exitHandler(options, err) {
   }
 }
 
-// process.on('exit', exitHandler.bind(null, {exit: true}))
+process.on('SIGTERM', exitHandler.bind(null, {exit: true}))
 process.on('SIGINT', exitHandler.bind(null, {exit: true}))
 
 function saveToDB(db) {

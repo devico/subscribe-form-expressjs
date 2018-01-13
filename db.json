@@ -39,6 +39,16 @@
       "username": "ss",
       "email": "aaa@zz.zz",
       "status": "subscribed"
+    },
+    {
+      "username": "bbbb",
+      "email": "bbb@bb.bb",
+      "status": "subscribed"
+    },
+    {
+      "username": "hhh",
+      "email": "hhh@.hh.hh",
+      "status": "subscribed"
     }
   ]
 }
