@@ -49,6 +49,11 @@
       "username": "hhh",
       "email": "hhh@.hh.hh",
       "status": "subscribed"
+    },
+    {
+      "username": "jjj",
+      "email": "jjj@jjj.jj",
+      "status": "subscribed"
     }
   ]
 }

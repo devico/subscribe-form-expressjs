@@ -8,15 +8,7 @@ const waitInterval = 100000
 
 const app = express()
 
-let db
-
-fs.readFile('db.json', 'utf-8', (err, data) => {
-  if (err) {
-    throw err
-  } else {
-    db = JSON.parse(data)
-  }
-})
+let db = JSON.parse(fs.readFileSync('db.json', 'utf-8'))
 
 app.use('/', express.static(path.join(__dirname, './public')))
 
@@ -60,10 +52,7 @@ process.on('SIGINT', exitHandler.bind(null, {exit: true}))
 
 function saveToDB(db) {
   let json = JSON.stringify(db, null, 2)
-  fs.writeFile('db.json', json, (err) => {
-    if (err) throw err
-    console.log('complete')
-  })
+  fs.writeFileSync('db.json', json)
 }
 
 setInterval(() => {
